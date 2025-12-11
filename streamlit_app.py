@@ -4,6 +4,37 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
+import streamlit as st
+import datetime
+import json
+import os
+
+COUNTER_FILE = "visit_stats.json"
+
+def update_daily_visits():
+    try:
+        today_str = datetime.date.today().isoformat()
+        if "has_counted" in st.session_state:
+            return json.load(open(COUNTER_FILE)).get("count", 0) if os.path.exists(COUNTER_FILE) else 0
+
+        data = {"date": today_str, "count": 0}
+        if os.path.exists(COUNTER_FILE):
+            try:
+                file_data = json.load(open(COUNTER_FILE))
+                if file_data["date"] == today_str:
+                    data = file_data
+            except:
+                pass
+        
+        data["count"] += 1
+        json.dump(data, open(COUNTER_FILE, "w"))
+        st.session_state["has_counted"] = True
+        return data["count"]
+    except:
+        return 0
+
+
+
 # -----------------------------------------------------------------------------
 # 0. 多语言配置（核心：语言字典 + 切换逻辑）
 # -----------------------------------------------------------------------------
@@ -551,3 +582,9 @@ with st.expander(t("view_data_table")):
 
 # Disclaimer
 st.caption(t("disclaimer"))
+daily_visits = update_daily_visits()
+st.markdown(f"""
+<div style="text-align: center; color: #64748b; font-size: 0.7rem; margin: 10px 0;">
+    今日访问: {daily_visits}
+</div>
+""", unsafe_allow_html=True)
