@@ -42,7 +42,7 @@ def update_daily_visits():
 LANG_DICT = {
     # 页面基础
     "page_title": {
-        "zh-CN": "香港财富投影计算器",
+        "zh-CN": "香港投资回报计算器",
         "zh-TW": "香港財富投影計算器",
         "en": "HK Wealth Projector"
     },
@@ -157,7 +157,7 @@ LANG_DICT = {
     
     # 主页面
     "title": {
-        "zh-CN": "财富投影分析",
+        "zh-CN": "百万港元回报",
         "zh-TW": "財富投影分析",
         "en": "Wealth Projection"
     },
