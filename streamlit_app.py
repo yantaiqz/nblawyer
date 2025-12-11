@@ -227,7 +227,7 @@ with st.sidebar.expander(t("hk_real_estate"), expanded=False):
 with st.sidebar.expander(t("global_equities"), expanded=False):
     r_stocks = st.sidebar.slider(t("avg_annual_return"), 0.0, 15.0, 8.5, 0.1) / 100
     # 新增：股票波动率参数（默认18%，符合标普500长期波动率）
-    volatility = st.sidebar.slider(t("volatility"), 0.0, 40.0, 18.0, 0.5) / 100
+    volatility = st.sidebar.slider(t("volatility"), 0.0, 40.0, 14.0, 0.5) / 100
     st.caption(t("volatility_caption"))
 
 # -----------------------------------------------------------------------------
